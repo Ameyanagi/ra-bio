@@ -73,9 +73,9 @@ def _write_fixture_db(path: Path) -> None:
 
         profile = {
             "cluster_id": "ORG-000001",
-            "canonical_name": "\"Actinomortierella wolfii\"",
-            "preferred_scientific_name": "\"Actinomortierella wolfii\"",
-            "scientific_names": ["\"Actinomortierella wolfii\""],
+            "canonical_name": '"Actinomortierella wolfii"',
+            "preferred_scientific_name": '"Actinomortierella wolfii"',
+            "scientific_names": ['"Actinomortierella wolfii"'],
             "aliases": ["Mortierella wolfii"],
             "datasets": ["fungi"],
             "dataset_versions": {"fungi": "fixture"},
@@ -98,7 +98,7 @@ def _write_fixture_db(path: Path) -> None:
                         "source_label": "11)TRBA 460 [2023-12]",
                         "source_record_id": "fungi:7",
                     }
-                ]
+                ],
             },
             "source_snapshots": {
                 "fungi": {
@@ -115,8 +115,8 @@ def _write_fixture_db(path: Path) -> None:
                 {
                     "entry_id": "fungi:7",
                     "dataset": "fungi",
-                    "scientific_name": "\"Actinomortierella wolfii\"",
-                    "canonical_name": "\"Actinomortierella wolfii\"",
+                    "scientific_name": '"Actinomortierella wolfii"',
+                    "canonical_name": '"Actinomortierella wolfii"',
                     "canonical_status": "canonical",
                     "aliases": ["Mortierella wolfii"],
                 }
@@ -133,20 +133,20 @@ def _write_fixture_db(path: Path) -> None:
             """,
             (
                 "ORG-000001",
-                "\"Actinomortierella wolfii\"",
+                '"Actinomortierella wolfii"',
                 "actinomortierellawolfii",
-                "\"Actinomortierella wolfii\"",
+                '"Actinomortierella wolfii"',
                 "actinomortierellawolfii",
                 json.dumps(["fungi"], ensure_ascii=False),
-                json.dumps(["\"Actinomortierella wolfii\""], ensure_ascii=False),
+                json.dumps(['"Actinomortierella wolfii"'], ensure_ascii=False),
                 json.dumps(["Mortierella wolfii"], ensure_ascii=False),
                 json.dumps(profile, ensure_ascii=False),
             ),
         )
 
         alias_rows = [
-            ("ORG-000001", "\"Actinomortierella wolfii\"", "actinomortierellawolfii", "scientific_name", "fixture"),
-            ("ORG-000001", "\"Actinomortierella wolfii\"", "actinomortierellawolfii", "canonical_name", "fixture"),
+            ("ORG-000001", '"Actinomortierella wolfii"', "actinomortierellawolfii", "scientific_name", "fixture"),
+            ("ORG-000001", '"Actinomortierella wolfii"', "actinomortierellawolfii", "canonical_name", "fixture"),
             ("ORG-000001", "Mortierella wolfii", "mortierellawolfii", "alias", "fixture"),
         ]
         connection.executemany(

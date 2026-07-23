@@ -39,9 +39,7 @@ ANNOTATION_GROUPS = {
         "plant_pathogen",
         "housing_fungi",
     ),
-    "pathogen_profiles": (
-        "fish_pathogen_profile",
-    ),
+    "pathogen_profiles": ("fish_pathogen_profile",),
 }
 
 DATASET_LABELS = {
@@ -189,7 +187,7 @@ def _strip_wrapping_quotes(value: str) -> str:
         changed = False
         for left, right in quote_pairs:
             if text.startswith(left) and text.endswith(right) and len(text) > len(left) + len(right):
-                text = text[len(left):-len(right)].strip()
+                text = text[len(left) : -len(right)].strip()
                 changed = True
                 break
         if not changed:
@@ -342,10 +340,7 @@ class BioDatabase:
     def get_source_snapshots(self) -> list[dict[str, Any]]:
         """Return source snapshot metadata for the bundled dataset."""
         self._ensure_loaded()
-        return [
-            copy.deepcopy(self._snapshots[key])
-            for key in sorted(self._snapshots)
-        ]
+        return [copy.deepcopy(self._snapshots[key]) for key in sorted(self._snapshots)]
 
     def get_runtime_status(self) -> dict[str, Any]:
         """Return lightweight runtime metadata suitable for health checks."""
@@ -361,10 +356,7 @@ class BioDatabase:
         }
 
     def _dataset_labels(self, dataset_ids: list[str], language: str) -> dict[str, str]:
-        return {
-            dataset_id: DATASET_LABELS[language].get(dataset_id, dataset_id)
-            for dataset_id in dataset_ids
-        }
+        return {dataset_id: DATASET_LABELS[language].get(dataset_id, dataset_id) for dataset_id in dataset_ids}
 
     def _prepare_source_updates(self, profile: dict[str, Any], language: str) -> list[dict[str, Any]]:
         source_snapshots = profile.get("source_snapshots")
@@ -496,19 +488,23 @@ class BioDatabase:
 
         annotation_keys = sorted(risk_annotations)
         regulation_keys = [
-            annotation_key for annotation_key in annotation_keys
+            annotation_key
+            for annotation_key in annotation_keys
             if ANNOTATION_GROUP_BY_KEY.get(annotation_key) == "regulations"
         ]
         biosafety_keys = [
-            annotation_key for annotation_key in annotation_keys
+            annotation_key
+            for annotation_key in annotation_keys
             if ANNOTATION_GROUP_BY_KEY.get(annotation_key) == "biosafety"
         ]
         designation_keys = [
-            annotation_key for annotation_key in annotation_keys
+            annotation_key
+            for annotation_key in annotation_keys
             if ANNOTATION_GROUP_BY_KEY.get(annotation_key) == "designations"
         ]
         pathogen_profile_keys = [
-            annotation_key for annotation_key in annotation_keys
+            annotation_key
+            for annotation_key in annotation_keys
             if ANNOTATION_GROUP_BY_KEY.get(annotation_key) == "pathogen_profiles"
         ]
 
@@ -532,8 +528,7 @@ class BioDatabase:
         profile = self._clean_profile_for_output(self._profiles_by_cluster[cluster_id])
         profile["dataset_labels"] = self._dataset_labels(profile.get("datasets", []), language)
         profile["annotation_labels"] = {
-            key: ANNOTATION_LABELS[language].get(key, key)
-            for key in profile.get("risk_annotations", {})
+            key: ANNOTATION_LABELS[language].get(key, key) for key in profile.get("risk_annotations", {})
         }
         profile["annotation_group_labels"] = {
             group_key: ANNOTATION_GROUP_LABELS[language].get(group_key, group_key)

@@ -2,6 +2,7 @@
 name = "ra-bio"
 version = "0.2.0"
 description = "Public runtime library for Japanese microorganism risk and law reference data"
+authors = [{ name = "Ameyanagi", email = "contact@ameyanagi.com" }]
 readme = "README.md"
 requires-python = ">=3.12"
 license = {text = "MIT"}
@@ -12,9 +13,14 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
 dependencies = []
+
+[project.urls]
+Repository = "https://github.com/Ameyanagi/ra-bio"
 
 [build-system]
 requires = ["hatchling"]
@@ -38,6 +44,9 @@ target-version = "py312"
 
 [dependency-groups]
 dev = [
+    "build>=1.3.0",
+    "pre-commit>=4.5.1",
     "pytest>=9.0.2",
     "ruff>=0.14.10",
+    "twine>=6.2.0",
 ]
