@@ -1,5 +1,9 @@
 # ra-bio
 
+<p align="center">
+  <img src="assets/logo.png" alt="RA Suite logo" width="180">
+</p>
+
 Public runtime library for microorganism risk-reference data derived from NITE/MRINDA.
 
 `ra_bio` is the canonical non-MCP API for direct consumers.
